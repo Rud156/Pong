@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{2dec8f6b-14d6-4b30-b1c6-10ad4acb387e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{a60a0db2-c032-4312-af40-b1a47df7c0e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{8a7098ad-f851-4e1b-b9b5-178dd30b8d3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pong.cpp">
@@ -60,6 +66,9 @@
     <ClCompile Include="Src/Player/PlayerPaddle.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Src/Common/Ball.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src/Enums/Enums.h">
@@ -79,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Src/Utils/VectorHelpers.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Common/Ball.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -169,9 +169,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src/Common/Ball.h" />
     <ClInclude Include="Src/Utils/ExtensionFunctions.h" />
     <ClInclude Include="Src/Utils/ColorHelpers.h" />
     <ClInclude Include="Src/Utils/VectorHelpers.h" />
+    <ClCompile Include="Src/Common/Ball.cpp" />
     <ClCompile Include="Src/Player/PlayerPaddle.cpp" />
     <ClCompile Include="Src/Scenes/MainScene.cpp" />
     <ClCompile Include="Src/Enums/Enum.cpp" />

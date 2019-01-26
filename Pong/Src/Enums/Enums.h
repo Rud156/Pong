@@ -6,4 +6,11 @@ namespace Enums
 		Main,
 		GameOver
 	};
+
+	enum Direction
+	{
+		Left,
+		Right,
+		None
+	};
 }

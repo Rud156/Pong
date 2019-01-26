@@ -1,22 +1,44 @@
 #pragma once
 
+#include <string>
 #include "raylib.h"
+#include "../Enums/Enums.h"
+#include "../Common/Ball.h"
 
 namespace Player
 {
 	class PlayerPaddle
 	{
 	private:
-		Vector2 _position;
-		Color _color;
+		std::string _player_name;
 
-		const int _movement_speed = 5;
+		int _window_width;
+		int _window_height;
+
+		Vector2 _position;
+		Vector2 _velocity;
+
+		Color _color;
+		const int _paddle_width = 20;
+		const int _paddle_height = 5;
+
+		bool _game_started;
+		int _movement_speed = 5;
 		bool is_ai;
+
+		Common::Ball* _ball;
 
 		void movePaddleHuman();
 		void movePaddleAi();
+		void movePaddle(Enums::Direction);
 
 	public:
+		PlayerPaddle(const std::string& name, float xPosition, float yPosition, bool isAi, Color color);
 
+		void update();
+		void draw() const;
+		void startGame();
+
+		void incrementAiPaddleSpeed(int amount);
 	};
 }
