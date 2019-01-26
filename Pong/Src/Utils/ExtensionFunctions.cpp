@@ -24,6 +24,11 @@ namespace Utils
 		return amount * (stop - start) + start;
 	}
 
+	float ExtensionFunctions::GetRandom01()
+	{
+		return  GetRandomValue(0, 1000) / 1000.0;
+	}
+
 	std::string ExtensionFunctions::FormatFloatToStringInt(const float number)
 	{
 		const auto intNumber = static_cast<int>(number);
