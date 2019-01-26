@@ -169,7 +169,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Rockin%27So\Documents\Visual Studio 2017\Projects\Simple Programs\Pong\Pong\Pong.cpp" />
+    <ClInclude Include="Src/Utils/ExtensionFunctions.h" />
+    <ClInclude Include="Src/Utils/ColorHelpers.h" />
+    <ClInclude Include="Src/Utils/VectorHelpers.h" />
+    <ClCompile Include="Src/Player/PlayerPaddle.cpp" />
+    <ClCompile Include="Src/Scenes/MainScene.cpp" />
+    <ClCompile Include="Src/Enums/Enum.cpp" />
+    <ClCompile Include="Pong.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src/Utils/ExtensionFunctions.cpp" />
+    <ClCompile Include="Src/Utils/ColorHelpers.cpp" />
+    <ClCompile Include="Src/Utils/VectorHelpers.cpp" />
+    <ClInclude Include="Src/Player/PlayerPaddle.h" />
+    <ClInclude Include="Src/Scenes/MainScene.h" />
+    <ClInclude Include="Src/Enums/Enums.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

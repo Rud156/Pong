@@ -13,10 +13,72 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{38d54ad0-1be6-42aa-b552-027d5e74d77f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enums">
+      <UniqueIdentifier>{232fe5e9-248f-4767-81db-38a65cce72c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{6ad1d67a-711a-4fe7-847e-2dc0df34eb6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{7f823565-942b-4a96-8e35-f8362c578f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{f12542c9-b21c-4852-87c1-34a41d9657cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{13e9f105-bd6d-4a18-9a12-830e62c44ab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{03cdba73-a262-4036-a82b-c0cf561d8876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{2dec8f6b-14d6-4b30-b1c6-10ad4acb387e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Rockin%27So\Documents\Visual Studio 2017\Projects\Simple Programs\Pong\Pong\Pong.cpp">
+    <ClCompile Include="Pong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src/Enums/Enum.cpp">
+      <Filter>Source Files\Enums</Filter>
+    </ClCompile>
+    <ClCompile Include="Src/Scenes/MainScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Src/Utils/ColorHelpers.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Src/Utils/ExtensionFunctions.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Src/Utils/VectorHelpers.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Src/Player/PlayerPaddle.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src/Enums/Enums.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Scenes/MainScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Player/PlayerPaddle.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Utils/ColorHelpers.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Utils/ExtensionFunctions.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Src/Utils/VectorHelpers.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

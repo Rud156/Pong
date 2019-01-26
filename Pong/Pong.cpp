@@ -5,40 +5,21 @@
 
 int main()
 {
-	// Initialization
-   //--------------------------------------------------------------------------------------
-	int screenWidth = 800;
-	int screenHeight = 450;
+	const auto screenWidth = 800;
+	const auto screenHeight = 450;
 
-	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+	InitWindow(screenWidth, screenHeight, "Pong");
 
-	SetTargetFPS(60);
-	//--------------------------------------------------------------------------------------
-
-	// Main game loop
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+	while (!WindowShouldClose())
 	{
-		// Update
-		//----------------------------------------------------------------------------------
-		// TODO: Update your variables here
-		//----------------------------------------------------------------------------------
-
-		// Draw
-		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
-
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+		ClearBackground(BLACK);
 
 		EndDrawing();
-		//----------------------------------------------------------------------------------
 	}
 
-	// De-Initialization
-	//--------------------------------------------------------------------------------------   
-	CloseWindow();        // Close window and OpenGL context
-	//--------------------------------------------------------------------------------------
+	CloseWindow();
 
 	return 0;
 }
