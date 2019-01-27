@@ -1,18 +1,22 @@
 #pragma once
+#include "raylib.h"
 
 namespace Common
 {
-	class Shaker
+	class Flasher
 	{
-	protected:
-		float _shake_duration;
-		float _shake_amount;
+	private:
+		const float _shake_duration = 0.5f;
+		const float _shake_amount = 20;
 
 		bool _start_shaking;
 		float _current_duration;
 
-		virtual void shakerUpdate();
+	protected:
+		Vector2 _position;
+
 		void startShake();
-		void disableShake();
+		Vector2 shakerUpdate();
+		void stopShake();
 	};
 }

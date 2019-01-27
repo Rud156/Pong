@@ -169,14 +169,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Src/Common/Shaker.h" />
+    <ClInclude Include="Src\Common\Flasher.h" />
     <ClInclude Include="Src/Scenes/GameOver.h" />
     <ClInclude Include="Src/Scenes/HomeScreen.h" />
     <ClInclude Include="Src/Common/Ball.h" />
     <ClInclude Include="Src/Utils/ExtensionFunctions.h" />
     <ClInclude Include="Src/Utils/ColorHelpers.h" />
     <ClInclude Include="Src/Utils/VectorHelpers.h" />
-    <ClCompile Include="Src/Common/Shaker.cpp" />
+    <ClCompile Include="Src\Common\Flasher.cpp" />
     <ClCompile Include="Src/Scenes/GameOver.cpp" />
     <ClCompile Include="Src/Scenes/HomeScreen.cpp" />
     <ClCompile Include="Src/Common/Ball.cpp" />

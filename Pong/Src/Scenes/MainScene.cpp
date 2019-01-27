@@ -190,6 +190,8 @@ namespace Scenes
 
 	bool MainScene::update()
 	{
+		Instance()->flashScreenUpdate();
+
 		updateBall();
 		updatePlayers();
 		displayScore();
@@ -215,5 +217,10 @@ namespace Scenes
 		}
 
 		return false;
+	}
+
+	void MainScene::flashScreen()
+	{
+		Instance()->startFlash();
 	}
 }

@@ -1,8 +1,9 @@
 #include "Ball.h"
+#include "../Scenes/MainScene.h"
 #include "../Utils/ExtensionFunctions.h"
 #include "../Utils/VectorHelpers.h"
-#include <cmath>
 #include "../Utils/ColorHelpers.h"
+#include <cmath>
 
 namespace Common
 {
@@ -17,6 +18,8 @@ namespace Common
 
 		this->_color = color;
 		this->_ball_speed = this->_min_ball_speed;
+
+		this->_max_history = floor(30.0f / 60.0f * floor(1 / GetFrameTime()));
 	}
 
 	void Ball::checkAndLimitBallVelocity()
@@ -83,6 +86,8 @@ namespace Common
 
 		if (ballCollided)
 		{
+			Scenes::MainScene::flashScreen();
+
 			const auto xVelocity = paddleVelocity.x - this->_velocity.x;
 			const auto yVelocity = -this->_velocity.y;
 
@@ -106,7 +111,10 @@ namespace Common
 
 		const auto x = this->_position.x;
 		if (x < -this->_radius / 2.0f || x > this->_window_width + this->_radius / 2.0f)
+		{
 			this->_velocity = {-this->_velocity.x, this->_velocity.y};
+			Scenes::MainScene::flashScreen();
+		}
 
 		this->checkAndLimitBallVelocity();
 		this->_position = Utils::VectorHelpers::Add(this->_position,

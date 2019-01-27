@@ -1,3 +1,5 @@
+#pragma once
+
 namespace Enums
 {
 	enum Scene

@@ -25,7 +25,7 @@ namespace Common
 		const int _radius = 10;
 		Color _color{};
 
-		const int _max_history = 30;
+		int _max_history;
 		std::vector<Vector2> _history;
 
 		void checkAndLimitBallVelocity();

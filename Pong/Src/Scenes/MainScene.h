@@ -1,10 +1,11 @@
 #pragma once
 #include "../Player/PlayerPaddle.h"
 #include <string>
+#include "../Common/Flasher.h"
 
 namespace Scenes
 {
-	class MainScene final
+	class MainScene final: Common::Flasher
 	{
 	private:
 		Player::PlayerPaddle* _humanPlayer;
@@ -50,5 +51,7 @@ namespace Scenes
 
 		static void setupOrResetScene();
 		static bool update();
+
+		static void flashScreen();
 	};
 }
