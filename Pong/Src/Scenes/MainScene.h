@@ -38,7 +38,6 @@ namespace Scenes
 		static void displayScore();
 
 		static void updateBall();
-		static void createBall();
 
 		static void updatePlayers();
 		static void checkPaddleAndBallCollision();

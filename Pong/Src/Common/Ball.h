@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+#include <vector>
 
 namespace Common
 {
@@ -24,20 +25,26 @@ namespace Common
 		const int _radius = 10;
 		Color _color{};
 
+		const int _max_history = 30;
+		std::vector<Vector2> _history;
+
 		void checkAndLimitBallVelocity();
-		
+
+		void setHistory();
+		void drawTrails();
+
 	public:
 		Ball(float xPosition, float yPosition, Color color);
-		void draw() const;
+		void draw();
 		void update();
 		void checkCollisionWithPaddle(Rectangle rectangle, Vector2 paddleVelocity);
 
 		void launchBall(Vector2 playerVelocity);
-		void incrementBallSpeed(float level);
+		void incrementBallSpeed();
 
 		Vector2 getPosition() const;
 		void setPosition(Vector2 position);
-		void resetPosition();
+		void resetBallStats();
 
 		bool isBallOutOfScreen() const;
 	};

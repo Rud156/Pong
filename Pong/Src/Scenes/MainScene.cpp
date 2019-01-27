@@ -109,15 +109,6 @@ namespace Scenes
 			changeLevel();
 	}
 
-	void MainScene::createBall()
-	{
-		Instance()->_ball = new Common::Ball(
-			Instance()->_screen_width / 2.0f,
-			Instance()->_screen_height - 35,
-			ORANGE
-		);
-	}
-
 	void MainScene::updatePlayers()
 	{
 		Instance()->_humanPlayer->draw();
@@ -153,14 +144,10 @@ namespace Scenes
 
 		Instance()->_game_started = false;
 
-		delete Instance()->_ball;
-		createBall();
-		Instance()->_aiPlayer->setBall(Instance()->_ball);
 		if (ballPosition.y < 0)
-		{
-			Instance()->_ball->incrementBallSpeed(Instance()->_current_level);
-		}
+			Instance()->_ball->incrementBallSpeed();
 
+		Instance()->_ball->resetBallStats();
 		Instance()->_current_countdown = Instance()->_max_countdown;
 	}
 
@@ -178,7 +165,11 @@ namespace Scenes
 		Instance()->_human_player_score = 0;
 		Instance()->_ai_player_score = 0;
 
-		createBall();
+		Instance()->_ball = new Common::Ball(
+			Instance()->_screen_width / 2.0f,
+			Instance()->_screen_height - 35,
+			ORANGE
+		);
 
 		Instance()->_humanPlayer = new Player::PlayerPaddle(
 			"Human",
