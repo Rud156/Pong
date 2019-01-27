@@ -20,6 +20,15 @@ namespace Common
 		this->_ball_speed = this->_min_ball_speed;
 
 		this->_max_history = floor(30.0f / 60.0f * floor(1 / GetFrameTime()));
+
+		this->_explode_sound = LoadSound("resources/audio/explosion.wav");
+		this->_ball_launch_sound = LoadSound("resources/audio/launch.wav");
+	}
+
+	Ball::~Ball()
+	{
+		UnloadSound(this->_explode_sound);
+		UnloadSound(this->_ball_launch_sound);
 	}
 
 	void Ball::checkAndLimitBallVelocity()
@@ -40,6 +49,21 @@ namespace Common
 			normalizedVelocity = this->_ball_speed;
 
 		this->_velocity = {x, normalizedVelocity * direction};
+	}
+
+	void Ball::checkBallScreenEdgePosition()
+	{
+		const auto x = this->_position.x;
+
+		if (x < -this->_radius / 2.0f || x > this->_window_width + this->_radius / 2.0f)
+		{
+			this->_velocity = {-this->_velocity.x, this->_velocity.y};
+
+			Scenes::MainScene::flashScreen();
+
+			if (!IsSoundPlaying(this->_explode_sound))
+				PlaySound(this->_explode_sound);
+		}
 	}
 
 	void Ball::setHistory()
@@ -88,6 +112,9 @@ namespace Common
 		{
 			Scenes::MainScene::flashScreen();
 
+			if (!IsSoundPlaying(this->_explode_sound))
+				PlaySound(this->_explode_sound);
+
 			const auto xVelocity = paddleVelocity.x - this->_velocity.x;
 			const auto yVelocity = -this->_velocity.y;
 
@@ -109,14 +136,9 @@ namespace Common
 		if (!this->_ball_launched)
 			return;
 
-		const auto x = this->_position.x;
-		if (x < -this->_radius / 2.0f || x > this->_window_width + this->_radius / 2.0f)
-		{
-			this->_velocity = {-this->_velocity.x, this->_velocity.y};
-			Scenes::MainScene::flashScreen();
-		}
-
 		this->checkAndLimitBallVelocity();
+		this->checkBallScreenEdgePosition();
+
 		this->_position = Utils::VectorHelpers::Add(this->_position,
 		                                            Utils::VectorHelpers::Mult(this->_velocity, GetFrameTime()));
 
@@ -125,6 +147,11 @@ namespace Common
 
 	void Ball::launchBall(Vector2 playerVelocity)
 	{
+		if (this->_ball_launched)
+			return;
+
+		PlaySound(this->_ball_launch_sound);
+
 		this->_ball_launched = true;
 		const auto launchVelocity = Utils::ExtensionFunctions::GetRandom01() * this->_ball_speed +
 			this->_min_ball_speed;

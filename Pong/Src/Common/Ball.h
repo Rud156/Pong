@@ -20,6 +20,8 @@ namespace Common
 		Vector2 _position{};
 		Vector2 _velocity{};
 
+		Sound _explode_sound{};
+		Sound _ball_launch_sound{};
 		bool _ball_launched{};
 
 		const int _radius = 10;
@@ -29,12 +31,15 @@ namespace Common
 		std::vector<Vector2> _history;
 
 		void checkAndLimitBallVelocity();
+		void checkBallScreenEdgePosition();
 
 		void setHistory();
 		void drawTrails();
 
 	public:
 		Ball(float xPosition, float yPosition, Color color);
+		~Ball();
+
 		void draw();
 		void update();
 		void checkCollisionWithPaddle(Rectangle rectangle, Vector2 paddleVelocity);

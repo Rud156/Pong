@@ -8,19 +8,19 @@ namespace Scenes
 	class MainScene final: Common::Flasher
 	{
 	private:
-		Player::PlayerPaddle* _humanPlayer;
-		Player::PlayerPaddle* _aiPlayer;
+		Player::PlayerPaddle* _humanPlayer{};
+		Player::PlayerPaddle* _aiPlayer{};
 
-		Common::Ball* _ball;
+		Common::Ball* _ball{};
 
-		int _screen_width;
-		int _screen_height;
+		int _screen_width{};
+		int _screen_height{};
 
-		int _human_player_score;
-		int _ai_player_score;
+		int _human_player_score{};
+		int _ai_player_score{};
 
-		int _game_started;
-		int _current_level;
+		int _game_started{};
+		int _current_level{};
 		const int _ai_paddle_speed_increment_amount = 50;
 
 		const int _max_countdown = 3;

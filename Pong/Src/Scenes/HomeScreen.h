@@ -14,8 +14,8 @@ namespace Scenes
 
 		Color _button_color = RED;
 
-		int _screen_width;
-		int _screen_height;
+		int _screen_width{};
+		int _screen_height{};
 
 		static HomeScreen* _instance;
 		HomeScreen();

@@ -12,10 +12,13 @@ int main()
 	const auto screenHeight = 450;
 
 	InitWindow(screenWidth, screenHeight, "Pong");
+	InitAudioDevice();
 
-	Scenes::HomeScreen::Instance();
-	Scenes::MainScene::Instance();
-	Scenes::GameOver::Instance();
+	const auto backgroundMusic = LoadSound("resources/audio/background.wav");
+
+	Scenes::HomeScreen::Instance(); // Create Instance of Home Screen
+	Scenes::MainScene::Instance(); // Create Instance of Main Screen
+	Scenes::GameOver::Instance(); // Create Instance of GameOver Screen
 
 	Scenes::HomeScreen::setupScene();
 	Scenes::MainScene::setupOrResetScene();
@@ -27,6 +30,9 @@ int main()
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
+
+		if (!IsSoundPlaying(backgroundMusic))
+			PlaySound(backgroundMusic);
 
 		switch (sceneType)
 		{
@@ -64,6 +70,9 @@ int main()
 		EndDrawing();
 	}
 
+	UnloadSound(backgroundMusic);
+
+	CloseAudioDevice();
 	CloseWindow();
 
 	return 0;
