@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "Src/Scenes/MainScene.h"
+#include "Src/Scenes/HomeScreen.h"
 
 int main()
 {
@@ -12,14 +13,18 @@ int main()
 	InitWindow(screenWidth, screenHeight, "Pong");
 
 	Scenes::MainScene::Instance();
+	Scenes::HomeScreen::Instance();
+
 	Scenes::MainScene::setupOrResetScene();
+	Scenes::HomeScreen::setupScene();
+
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		Scenes::MainScene::update();
+		Scenes::HomeScreen::drawAndCheckForGameStart();
 
 		EndDrawing();
 	}
