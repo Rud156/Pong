@@ -1,6 +1,7 @@
 #include "MainScene.h"
 #include "../Utils/ExtensionFunctions.h"
 #include <iostream>
+#include "GameOver.h"
 
 namespace Scenes
 {
@@ -155,6 +156,10 @@ namespace Scenes
 		delete Instance()->_ball;
 		createBall();
 		Instance()->_aiPlayer->setBall(Instance()->_ball);
+		if (ballPosition.y < 0)
+		{
+			Instance()->_ball->incrementBallSpeed(Instance()->_current_level);
+		}
 
 		Instance()->_current_countdown = Instance()->_max_countdown;
 	}
@@ -169,6 +174,9 @@ namespace Scenes
 		Instance()->_current_countdown = Instance()->_max_countdown;
 		Instance()->_game_started = false;
 		Instance()->_current_level = 0;
+
+		Instance()->_human_player_score = 0;
+		Instance()->_ai_player_score = 0;
 
 		createBall();
 
@@ -194,6 +202,13 @@ namespace Scenes
 		updateBall();
 		updatePlayers();
 		displayScore();
+
+		const auto playerLives = 3 - Instance()->_ai_player_score;
+		if (playerLives <= 0)
+		{
+			GameOver::setLevelCount(Instance()->_current_level);
+			return true;
+		}
 
 		const auto countdownComplete = Instance()->countdownToGameStart();
 		if (!countdownComplete)

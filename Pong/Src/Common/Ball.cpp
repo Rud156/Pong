@@ -65,7 +65,7 @@ namespace Common
 			return;
 
 		const auto x = this->_position.x;
-		if (x < -this->_radius || x > this->_window_width + this->_radius)
+		if (x < -this->_radius / 2.0f || x > this->_window_width + this->_radius / 2.0f)
 			this->_velocity = {-this->_velocity.x, this->_velocity.y};
 
 		this->checkAndLimitBallVelocity();
@@ -82,12 +82,12 @@ namespace Common
 		this->_velocity = {playerVelocity.x, -launchVelocity};
 	}
 
-	void Ball::incrementBallSpeed(const float amount)
+	void Ball::incrementBallSpeed(const float level)
 	{
-		if (this->_ball_speed + amount > this->_max_ball_speed)
+		if (this->_ball_speed + level > this->_max_ball_speed)
 			this->_ball_speed = this->_max_ball_speed;
 		else
-			this->_ball_speed = this->_ball_speed + amount;
+			this->_ball_speed = this->_ball_speed + level * this->_ball_speed_increment_amount;
 	}
 
 	Vector2 Ball::getPosition() const

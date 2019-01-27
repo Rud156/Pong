@@ -10,6 +10,7 @@ namespace Common
 		int _window_width;
 		int _window_height;
 
+		const int _ball_speed_increment_amount = 50;
 		const int _max_ball_speed = 700;
 		const int _min_ball_speed = 300;
 		float _ball_speed;
@@ -32,7 +33,7 @@ namespace Common
 		void checkCollisionWithPaddle(Rectangle rectangle, Vector2 paddleVelocity);
 
 		void launchBall(Vector2 playerVelocity);
-		void incrementBallSpeed(float amount);
+		void incrementBallSpeed(float level);
 
 		Vector2 getPosition() const;
 		void setPosition(Vector2 position);

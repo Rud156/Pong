@@ -21,15 +21,45 @@ int main()
 	Scenes::MainScene::setupOrResetScene();
 	Scenes::GameOver::setupScene();
 
-	Scenes::GameOver::setLevelCount(10);
-
+	auto sceneType = Enums::Scene::Home;
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		Scenes::GameOver::updateScene();
+		switch (sceneType)
+		{
+		case Enums::Home:
+			{
+				const auto gameStarted = Scenes::HomeScreen::drawAndCheckForGameStart();
+				if (gameStarted)
+				{
+					sceneType = Enums::Scene::Main;
+					Scenes::MainScene::setupOrResetScene();
+				}
+			}
+			break;
+
+		case Enums::Main:
+			{
+				const auto gameOver = Scenes::MainScene::update();
+				if (gameOver)
+					sceneType = Enums::Scene::GameOver;
+			}
+			break;
+
+		case Enums::GameOver:
+			{
+				const auto restartGame = Scenes::GameOver::updateScene();
+				if (restartGame)
+					sceneType = Enums::Scene::Home;
+			}
+			break;
+
+		default:
+			break;
+		}
 
 		EndDrawing();
 	}
