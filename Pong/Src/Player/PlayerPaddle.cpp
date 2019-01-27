@@ -53,11 +53,12 @@ namespace Player
 	void PlayerPaddle::movePaddle(Enums::Direction direction)
 	{
 		this->_velocity = {static_cast<float>(this->_window_width), 0};
+		const auto movementSpeed = this->is_ai ? this->_ai_movement_speed : this->_movement_speed;
 
 		if (direction == Enums::Direction::Left)
-			this->_velocity = Utils::VectorHelpers::SetMag(this->_velocity, -this->_movement_speed);
+			this->_velocity = Utils::VectorHelpers::SetMag(this->_velocity, -movementSpeed);
 		else if (direction == Enums::Direction::Right)
-			this->_velocity = Utils::VectorHelpers::SetMag(this->_velocity, this->_movement_speed);
+			this->_velocity = Utils::VectorHelpers::SetMag(this->_velocity, movementSpeed);
 		else
 			this->_velocity = {0, 0};
 
@@ -105,9 +106,9 @@ namespace Player
 		this->_game_started = true;
 	}
 
-	void PlayerPaddle::incrementAiPaddleSpeed(int amount)
+	void PlayerPaddle::incrementAiPaddleSpeed(const int amount)
 	{
-		this->_movement_speed += amount;
+		this->_ai_movement_speed += amount;
 	}
 
 	void PlayerPaddle::setBall(Common::Ball* ball)

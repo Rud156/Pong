@@ -63,6 +63,32 @@ namespace Scenes
 		return Instance()->_current_countdown <= 0;
 	}
 
+	void MainScene::displayScore()
+	{
+		const auto playerScore = "You: " +
+			Utils::ExtensionFunctions::FormatFloatToStringInt(Instance()->_human_player_score);
+		const auto computerScore = "Computer: " +
+			Utils::ExtensionFunctions::FormatFloatToStringInt(Instance()->_ai_player_score);
+
+		const auto playerLives = "Lives: " +
+			Utils::ExtensionFunctions::FormatFloatToStringInt(3 - Instance()->_ai_player_score);
+		const auto level = "Level: " +
+			Utils::ExtensionFunctions::FormatFloatToStringInt(Instance()->_current_level);
+
+		const auto playerScoreWidth = MeasureText(playerScore.c_str(), 20);
+		const auto computerScoreWidth = MeasureText(computerScore.c_str(), 20);
+
+		DrawText(playerScore.c_str(), Instance()->_screen_width - playerScoreWidth - 10,
+		         Instance()->_screen_height - 40, 20, PURPLE);
+		DrawText(computerScore.c_str(), Instance()->_screen_width - computerScoreWidth - 10,
+		         40, 20, BLUE);
+
+		DrawText(level.c_str(), 10,
+		         Instance()->_screen_height - 40, 20, GREEN);
+		DrawText(playerLives.c_str(), + 10,
+		         Instance()->_screen_height - 80, 20, MAROON);
+	}
+
 	void MainScene::updateBall()
 	{
 		if (!Instance()->_game_started)
@@ -116,7 +142,11 @@ namespace Scenes
 	{
 		const auto ballPosition = Instance()->_ball->getPosition();
 		if (ballPosition.y < 0)
+		{
 			Instance()->_human_player_score += 1;
+			Instance()->_current_level += 1;
+			Instance()->_aiPlayer->incrementAiPaddleSpeed(Instance()->_ai_paddle_speed_increment_amount);
+		}
 		else
 			Instance()->_ai_player_score += 1;
 
@@ -163,6 +193,7 @@ namespace Scenes
 	{
 		updateBall();
 		updatePlayers();
+		displayScore();
 
 		const auto countdownComplete = Instance()->countdownToGameStart();
 		if (!countdownComplete)

@@ -24,7 +24,8 @@ namespace Player
 		const int _paddle_height = 20;
 
 		bool _game_started{};
-		int _movement_speed = 500;
+		const int _movement_speed = 500;
+		int _ai_movement_speed = 200;
 		bool is_ai;
 
 		Common::Ball* _ball{};
@@ -35,7 +36,7 @@ namespace Player
 
 	public:
 		PlayerPaddle(const std::string& name, float xPosition, float yPosition, bool isAi, Color color,
-			Common::Ball* ball = nullptr);
+		             Common::Ball* ball = nullptr);
 
 		void startGame();
 
@@ -46,7 +47,7 @@ namespace Player
 
 		void incrementAiPaddleSpeed(int amount);
 		void setBall(Common::Ball* ball);
-		
+
 		Vector2 getPosition() const;
 		void resetPosition();
 
