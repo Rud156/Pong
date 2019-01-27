@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include "Src/Scenes/MainScene.h"
 #include "Src/Scenes/HomeScreen.h"
+#include "Src/Scenes/GameOver.h"
 
 int main()
 {
@@ -12,11 +13,15 @@ int main()
 
 	InitWindow(screenWidth, screenHeight, "Pong");
 
-	Scenes::MainScene::Instance();
 	Scenes::HomeScreen::Instance();
+	Scenes::MainScene::Instance();
+	Scenes::GameOver::Instance();
 
-	Scenes::MainScene::setupOrResetScene();
 	Scenes::HomeScreen::setupScene();
+	Scenes::MainScene::setupOrResetScene();
+	Scenes::GameOver::setupScene();
+
+	Scenes::GameOver::setLevelCount(10);
 
 
 	while (!WindowShouldClose())
@@ -24,7 +29,7 @@ int main()
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		Scenes::HomeScreen::drawAndCheckForGameStart();
+		Scenes::GameOver::updateScene();
 
 		EndDrawing();
 	}
