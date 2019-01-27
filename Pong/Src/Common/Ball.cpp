@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include "../Utils/ExtensionFunctions.h"
+#include "../Utils/VectorHelpers.h"
 #include <cmath>
 
 namespace Common
@@ -63,16 +64,22 @@ namespace Common
 		if (!this->_ball_launched)
 			return;
 
+		const auto x = this->_position.x;
+		if (x < -this->_radius || x > this->_window_width + this->_radius)
+			this->_velocity = {-this->_velocity.x, this->_velocity.y};
+
 		this->checkAndLimitBallVelocity();
+		this->_position = Utils::VectorHelpers::Add(this->_position,
+		                                            Utils::VectorHelpers::Mult(this->_velocity, GetFrameTime()));
 	}
 
 	void Ball::launchBall(Vector2 playerVelocity)
 	{
 		this->_ball_launched = true;
-		auto launchVelocity = Utils::ExtensionFunctions::GetRandom01() * this->_ball_speed +
+		const auto launchVelocity = Utils::ExtensionFunctions::GetRandom01() * this->_ball_speed +
 			this->_min_ball_speed;
 
-		this->_velocity = {playerVelocity.x, launchVelocity};
+		this->_velocity = {playerVelocity.x, -launchVelocity};
 	}
 
 	void Ball::incrementBallSpeed(const float amount)

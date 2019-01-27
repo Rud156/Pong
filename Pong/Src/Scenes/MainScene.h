@@ -33,8 +33,12 @@ namespace Scenes
 		static bool countdownToGameStart();
 
 		static void updateBall();
+		static void createBall();
+
 		static void updatePlayers();
 		static void checkPaddleAndBallCollision();
+
+		static void changeLevel();
 
 	public:
 		static MainScene* Instance();

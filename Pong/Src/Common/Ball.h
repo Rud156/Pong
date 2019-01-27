@@ -10,8 +10,8 @@ namespace Common
 		int _window_width;
 		int _window_height;
 
-		const int _max_ball_speed = 100;
-		const int _min_ball_speed = 10;
+		const int _max_ball_speed = 700;
+		const int _min_ball_speed = 300;
 		float _ball_speed;
 
 		Vector2 _spawn_position{};
@@ -24,12 +24,12 @@ namespace Common
 		Color _color{};
 
 		void checkAndLimitBallVelocity();
-		void checkCollisionWithPaddle(Rectangle rectangle, Vector2 paddleVelocity);
-
+		
 	public:
 		Ball(float xPosition, float yPosition, Color color);
 		void draw() const;
 		void update();
+		void checkCollisionWithPaddle(Rectangle rectangle, Vector2 paddleVelocity);
 
 		void launchBall(Vector2 playerVelocity);
 		void incrementBallSpeed(float amount);

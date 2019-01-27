@@ -4,10 +4,13 @@
 namespace Player
 {
 	PlayerPaddle::PlayerPaddle(const std::string& name, float xPosition, float yPosition, const bool isAi,
-	                           const Color color)
+	                           const Color color, Common::Ball* ball)
 	{
 		this->_window_width = GetScreenWidth();
 		this->_window_height = GetScreenHeight();
+
+
+		this->_ball = ball;
 
 		this->is_ai = isAi;
 		this->_spawn_position = {xPosition, yPosition};
@@ -30,6 +33,9 @@ namespace Player
 
 	void PlayerPaddle::movePaddleAi()
 	{
+		if (!this->_game_started)
+			return;
+
 		Enums::Direction direction;
 		const auto ballPosition = this->_ball->getPosition();
 		const auto positionDiff = ballPosition.x - this->_position.x;
@@ -55,15 +61,18 @@ namespace Player
 		else
 			this->_velocity = {0, 0};
 
+		const auto x = this->_position.x;
+		if (x < this->_paddle_width / 2)
+			this->_position = {this->_paddle_width / 2.0f + 1, this->_position.y};
+		else if (x > this->_window_width - this->_paddle_width / 2)
+			this->_position = {this->_window_width - this->_paddle_width / 2.0f - 1, this->_position.y};
+
 		this->_position = Utils::VectorHelpers::Add(this->_position,
 		                                            Utils::VectorHelpers::Mult(this->_velocity, GetFrameTime()));
 	}
 
 	void PlayerPaddle::update()
 	{
-		if (!this->_game_started)
-			return;
-
 		if (this->is_ai)
 			this->movePaddleAi();
 		else
@@ -75,7 +84,8 @@ namespace Player
 		const auto x = this->_position.x;
 		const auto y = this->_position.y;
 
-		DrawRectangle(x, y, this->_paddle_width, this->_paddle_height, this->_color);
+		DrawRectangle(x - this->_paddle_width / 2, y, this->_paddle_width,
+		              this->_paddle_height, this->_color);
 	}
 
 	Rectangle PlayerPaddle::getPaddleRectangle() const
@@ -83,7 +93,10 @@ namespace Player
 		const auto x = this->_position.x;
 		const auto y = this->_position.y;
 
-		const Rectangle rectangle = {x, y, this->_paddle_width, this->_paddle_height};
+		const Rectangle rectangle = {
+			x - this->_paddle_width / 2, y,
+			this->_paddle_width, this->_paddle_height
+		};
 		return rectangle;
 	}
 
@@ -95,6 +108,11 @@ namespace Player
 	void PlayerPaddle::incrementAiPaddleSpeed(int amount)
 	{
 		this->_movement_speed += amount;
+	}
+
+	void PlayerPaddle::setBall(Common::Ball* ball)
+	{
+		this->_ball = ball;
 	}
 
 	Vector2 PlayerPaddle::getPosition() const
